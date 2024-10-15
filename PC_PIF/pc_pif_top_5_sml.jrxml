@@ -1,0 +1,83 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="pc_pif_top_5_sml" language="java" columnCount="1" pageWidth="345" pageHeight="220" columnWidth="345" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="682c0cbb-72bd-448f-881e-583b53d2ef18">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PC_PIF.jrdax"/>
+	<query language="SQL"><![CDATA[	DECLARE @PostnKey bigint = 200485748525249,
+			@PostnLevelCd varchar(3) = 'MKT' --accepts AGN, MKT, TAM, FS1 see query below for description of each.
+
+	EXEC P_REP__GET_PC_PER_PIF_CHART_1 @PostnKey, @PostnLevelCd]]></query>
+	<field name="POSTN_KEY" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="POSTN_KEY"/>
+		<property name="com.jaspersoft.studio.field.label" value="POSTN_KEY"/>
+	</field>
+	<field name="TIME_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="TIME_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="TIME_ID"/>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+	</field>
+	<field name="COLUMN_1" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COLUMN_1"/>
+		<property name="com.jaspersoft.studio.field.label" value="COLUMN_1"/>
+	</field>
+	<group name="POSTN_KEY">
+		<expression><![CDATA[$F{POSTN_KEY}]]></expression>
+	</group>
+	<group name="TIME_ID">
+		<expression><![CDATA[$F{TIME_ID}]]></expression>
+	</group>
+	<group name="NAME">
+		<expression><![CDATA[$F{NAME}]]></expression>
+	</group>
+	<group name="COLUMN_1">
+		<expression><![CDATA[$F{COLUMN_1}]]></expression>
+	</group>
+	<background splitType="Stretch"/>
+	<summary height="170" splitType="Stretch">
+		<element kind="chart" chartType="stackedBar" uuid="1cadc9db-e7a2-423f-91f5-2e7811ed8ad8" x="-9" y="0" width="344" height="170" showLegend="false" evaluationTime="Report" linkType="None" linkTarget="Self">
+			<dataset kind="category">
+				<series>
+					<seriesExpression><![CDATA[$F{COLUMN_1}
+]]></seriesExpression>
+					<categoryExpression><![CDATA[$F{NAME}]]></categoryExpression>
+					<valueExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP)]]></valueExpression>
+					<labelExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP).toPlainString() + "%"
+]]></labelExpression>
+					<itemHyperlink linkType="None" linkTarget="Self"/>
+				</series>
+			</dataset>
+			<plot orientation="Horizontal" backgroundAlpha="0.0" categoryAxisLabelColor="#FFFFFF" categoryAxisTickLabelColor="#000000" categoryAxisVerticalTickLabels="false" categoryAxisLineColor="#FFFFFF" valueAxisLabelColor="rgba(255, 255, 255, 0.0)" valueAxisTickLabelColor="rgba(255, 255, 255, 0.0)" valueAxisLineColor="#FFFFFF" showTickMarks="false" showTickLabels="true" showLabels="true">
+				<categoryAxisLabelFont fontName="Arial"/>
+				<categoryAxisTickLabelFont fontName="Arial" fontSize="8.0" bold="false"/>
+				<valueAxisLabelFont fontName="Arial"/>
+				<valueAxisTickLabelFont fontName="Arial"/>
+				<itemLabel color="#FFFFFF" backgroundColor="rgba(245, 9, 5, 0.0)">
+					<font fontName="Arial" fontSize="10.0" bold="true"/>
+				</itemLabel>
+				<seriesColor order="0" color="#3B9AC3"/>
+				<seriesColor order="1" color="#3B9AC3"/>
+			</plot>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+		</element>
+		<element kind="staticText" uuid="3c4cc1e9-f58d-4861-9c0e-522cf151594b" x="80" y="0" width="166" height="20" fontName="Arial" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[% EAs On-Pace to PC Per PIF x5]]></text>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="staticText" uuid="3ea5d461-db06-44a9-ac42-f37a75fcdc3b" x="8" y="0" width="72" height="20" forecolor="#009CFF" fontName="Arial" fontSize="12.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Top 5 SMLs ]]></text>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="rectangle" uuid="6ba9989f-94d3-43d9-ba0d-cecb70c2436a" x="8" y="20" width="275" height="1">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<pen lineWidth="1.0" lineColor="#CFCFCF"/>
+		</element>
+	</summary>
+</jasperReport>

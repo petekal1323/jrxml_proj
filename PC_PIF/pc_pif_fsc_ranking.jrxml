@@ -1,0 +1,82 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="pc_pif_fsc_ranking" language="java" columnCount="1" pageWidth="340" pageHeight="220" columnWidth="340" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a1466785-3dd6-42c4-b217-e137ca7de408">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PC_PIF.jrdax"/>
+	<query language="SQL"><![CDATA[	DECLARE @PostnKey bigint = 120000048535083,
+			@PostnLevelCd varchar(3) = 'TAM' --accepts AGN, MKT, TAM, FS1 see query below for description of each.
+
+	EXEC P_REP__GET_PC_PER_PIF_CHART_1 @PostnKey, @PostnLevelCd]]></query>
+	<field name="POSTN_KEY" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="POSTN_KEY"/>
+		<property name="com.jaspersoft.studio.field.label" value="POSTN_KEY"/>
+	</field>
+	<field name="TIME_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="TIME_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="TIME_ID"/>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+	</field>
+	<field name="COLUMN_1" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COLUMN_1"/>
+		<property name="com.jaspersoft.studio.field.label" value="COLUMN_1"/>
+	</field>
+	<group name="POSTN_KEY">
+		<expression><![CDATA[$F{POSTN_KEY}]]></expression>
+	</group>
+	<group name="TIME_ID">
+		<expression><![CDATA[$F{TIME_ID}]]></expression>
+	</group>
+	<group name="NAME">
+		<expression><![CDATA[$F{NAME}]]></expression>
+	</group>
+	<group name="COLUMN_1">
+		<expression><![CDATA[$F{COLUMN_1}]]></expression>
+	</group>
+	<background splitType="Stretch"/>
+	<summary height="170" splitType="Stretch">
+		<element kind="staticText" uuid="1d3218fd-93ff-4528-9357-162aa38c2ca7" x="90" y="0" width="166" height="20" fontName="Arial" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[% EAs On-Pace to PC Per PIF x5]]></text>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="staticText" uuid="da9a4546-72a8-4c9b-b42b-754e055c7975" x="8" y="0" width="81" height="20" forecolor="#009CFF" fontName="Arial" fontSize="12.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[FSC Ranking]]></text>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="rectangle" uuid="d55cc0a5-6951-452a-8b11-4212ae1e99c1" x="8" y="20" width="265" height="1">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<pen lineWidth="1.0" lineColor="#CFCFCF"/>
+		</element>
+		<element kind="chart" chartType="stackedBar" uuid="82574913-1799-4b83-8ce4-ed89fdf4158b" x="0" y="0" width="330" height="170" showLegend="false" evaluationTime="Report">
+			<dataset kind="category">
+				<series>
+					<seriesExpression><![CDATA[$F{COLUMN_1}]]></seriesExpression>
+					<categoryExpression><![CDATA[$F{NAME}]]></categoryExpression>
+					<valueExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP)]]></valueExpression>
+					<labelExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP).toPlainString() + "%"]]></labelExpression>
+					<itemHyperlink linkType="None" linkTarget="Self"/>
+				</series>
+			</dataset>
+			<plot orientation="Horizontal" backgroundAlpha="0.0" categoryAxisLabelColor="rgba(0, 0, 0, 0.0)" categoryAxisTickLabelColor="#000000" categoryAxisVerticalTickLabels="false" categoryAxisLineColor="rgba(0, 0, 0, 0.0)" valueAxisLabelColor="rgba(0, 0, 0, 0.0)" valueAxisTickLabelColor="rgba(0, 0, 0, 0.0)" valueAxisVerticalTickLabels="false" valueAxisLineColor="rgba(0, 0, 0, 0.0)" showTickLabels="true" showLabels="true">
+				<categoryAxisLabelFont fontName="Arial"/>
+				<categoryAxisTickLabelFont fontName="Arial" fontSize="8.0" bold="false"/>
+				<valueAxisLabelFont fontName="Arial"/>
+				<valueAxisTickLabelFont fontName="Arial"/>
+				<itemLabel color="#FFFFFF" backgroundColor="rgba(255, 255, 255, 0.0)">
+					<font fontName="Arial" fontSize="10.0" bold="true"/>
+				</itemLabel>
+				<seriesColor order="0" color="#558F4B"/>
+				<seriesColor order="1" color="#558F4B"/>
+			</plot>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+	</summary>
+</jasperReport>

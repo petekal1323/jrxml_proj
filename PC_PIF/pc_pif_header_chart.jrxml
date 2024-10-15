@@ -1,0 +1,84 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="pc_pif_header_chart" language="java" columnCount="1" pageWidth="555" pageHeight="832" columnWidth="555" columnSpacing="5" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="596f9b7e-2bbd-4ccb-bc73-6c392d55423e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="pc_pif_main"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Style1" pdfEmbedded="true"/>
+	<query language="SQL"><![CDATA[
+        DECLARE @PostnKey bigint = 90000000484856
+        SELECT @PostnKey = CHILD__POSTN_KEY
+        FROM v_app__hierarchy h
+        WHERE h.child_postn_level__option_cd = 'CWD'
+        AND h.child__last_name <> 'Test Agents'
+        EXEC P_REP__GET_PC_PER_PIF_HEADER_CHART @postnKey 
+    ]]></query>
+	<field name="NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+	</field>
+	<field name="COLUMN_1" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COLUMN_1"/>
+		<property name="com.jaspersoft.studio.field.label" value="COLUMN_1"/>
+	</field>
+	<variable name="COLUMN_1_SUM" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{COLUMN_1}]]></expression>
+	</variable>
+	<summary height="120" splitType="Prevent">
+		<element kind="textField" uuid="97ef2d88-64cb-4c12-b035-9c41b8a5789d" stretchType="ElementGroupHeight" x="80" y="0" width="210" height="20" fontName="Arial" fontSize="12.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Right" vTextAlign="Bottom">
+			<expression><![CDATA["% EAs On-Pace (PC Per PIF x 5)"]]></expression>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+		<element kind="staticText" uuid="9113551d-7e6c-4327-83cd-0be172e294c6" stretchType="ElementGroupHeight" x="5" y="0" width="73" height="20" forecolor="#009CFF" fontName="Arial" fontSize="12.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" bold="true" pdfEmbedded="false" hTextAlign="Left" vTextAlign="Bottom">
+			<text><![CDATA[YTD GTM Results]]></text>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+		<element kind="rectangle" uuid="4620b464-99be-4348-97de-a39fadb9dbea" stretchType="ContainerHeight" x="5" y="21" width="285" height="1" forecolor="#C2C2C2" removeLineWhenBlank="true">
+			<property name="com.jaspersoft.studio.element.name" value="centered"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="chart" chartType="stackedBar" uuid="2583eaa6-6cc2-4996-992e-c95380551fab" stretchType="ContainerBottom" x="5" y="4" width="358" height="104" showLegend="false" evaluationTime="Report" linkType="None" linkTarget="Self" titleColor="#FFFFFF" subtitleColor="#FFFFFF" renderType="draw" titlePosition="Bottom" printRepeatedValues="false">
+			<titleExpression><![CDATA[""]]></titleExpression>
+			<subtitleExpression><![CDATA[""]]></subtitleExpression>
+			<dataset kind="category">
+				<series>
+					<seriesExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP).toPlainString()]]></seriesExpression>
+					<categoryExpression><![CDATA[$F{NAME}]]></categoryExpression>
+					<valueExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP)]]></valueExpression>
+					<labelExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP).toPlainString() + "%"
+]]></labelExpression>
+					<itemHyperlink linkType="None" linkTarget="Self"/>
+				</series>
+			</dataset>
+			<plot backcolor="rgba(255, 255, 255, 0.0)" orientation="Horizontal" backgroundAlpha="1.0" categoryAxisLabelColor="#FFFFFF" categoryAxisTickLabelColor="#000000" categoryAxisVerticalTickLabels="true" categoryAxisLineColor="#FFFFFF" valueAxisLabelColor="rgba(255, 255, 255, 0.0)" valueAxisTickLabelColor="rgba(255, 255, 255, 0.0)" valueAxisLineColor="rgba(255, 255, 255, 0.0)" showTickMarks="false" showTickLabels="true" showLabels="true">
+				<categoryAxisLabelFont fontName="Arial"/>
+				<categoryAxisTickLabelFont fontName="Arial" fontSize="12.0" bold="true"/>
+				<valueAxisLabelFont fontName="Arial"/>
+				<valueAxisTickLabelFont fontName="Arial"/>
+				<itemLabel color="#FFFFFF" backgroundColor="rgba(245, 9, 5, 0.0)">
+					<font fontName="Arial" fontSize="12.0" bold="true"/>
+				</itemLabel>
+				<seriesColor order="0" color="#075482"/>
+				<seriesColor order="1" color="#3B9AC3"/>
+			</plot>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="net.sf.jasperreports.customizer.0.drawAsLine" value="false"/>
+			<property name="net.sf.jasperreports.customizer.0.color" value="#FFFFFF"/>
+			<property name="net.sf.jasperreports.customizer.class.0" value="net.sf.jasperreports.customizers.marker.CategoryMarkerCustomizer"/>
+			<property name="net.sf.jasperreports.customizer.0.strokeWidth" value="0"/>
+			<property name="net.sf.jasperreports.customizer.0.strokeStyle" value="solid"/>
+			<property name="net.sf.jasperreports.customizer.0.layer" value="foreground"/>
+			<propertyExpression name="net.sf.jasperreports.customizer.0.category"><![CDATA[]]></propertyExpression>
+		</element>
+		<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+	</summary>
+</jasperReport>

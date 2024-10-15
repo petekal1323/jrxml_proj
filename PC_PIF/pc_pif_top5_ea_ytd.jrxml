@@ -1,0 +1,86 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="pc_pif_top5_ea_ytd" language="java" columnCount="1" pageWidth="350" pageHeight="210" orientation="Landscape" columnWidth="350" columnSpacing="5" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="318f5290-b6a7-4d88-b78b-004d10fbaf33">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PC_PIF.jrdax"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<query language="SQL"><![CDATA[DECLARE @PostnKey bigint = 90000000484850,
+			@PostnLevelCd varchar(3) = 'TAM' --accepts AGN, MKT, TAM, FS1 see query below for description of each.
+
+	EXEC P_REP__GET_PC_PER_PIF_CHART_1 @PostnKey, @PostnLevelCd]]></query>
+	<field name="POSTN_KEY" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="POSTN_KEY"/>
+		<property name="com.jaspersoft.studio.field.label" value="POSTN_KEY"/>
+	</field>
+	<field name="TIME_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="TIME_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="TIME_ID"/>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+	</field>
+	<field name="COLUMN_1" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COLUMN_1"/>
+		<property name="com.jaspersoft.studio.field.label" value="COLUMN_1"/>
+	</field>
+	<group name="POSTN_KEY">
+		<expression><![CDATA[$F{POSTN_KEY}]]></expression>
+	</group>
+	<group name="TIME_ID">
+		<expression><![CDATA[$F{TIME_ID}]]></expression>
+	</group>
+	<group name="NAME">
+		<expression><![CDATA[$F{NAME}]]></expression>
+	</group>
+	<group name="COLUMN_1">
+		<expression><![CDATA[$F{COLUMN_1}]]></expression>
+	</group>
+	<background splitType="Stretch"/>
+	<summary height="176">
+		<element kind="staticText" uuid="26d55d37-8a25-465f-bdb7-f509877504bc" x="8" y="0" width="72" height="20" forecolor="#009CFF" fontName="Arial" fontSize="12.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Top 5 EAs]]></text>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="rectangle" uuid="d0bf747c-dec1-4255-b802-6b1dc747cb84" x="8" y="20" width="265" height="1">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<pen lineWidth="1.0" lineColor="#CFCFCF"/>
+		</element>
+		<element kind="staticText" uuid="929d1c9d-97b9-4bc5-98f9-5494aa07512d" x="75" y="0" width="100" height="20" fontName="Arial" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[On-Pace PC Per PIF]]></text>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="chart" chartType="stackedBar" uuid="74871643-c673-4cb9-8ee6-c8f17fae70ed" x="0" y="0" width="330" height="170" showLegend="false" evaluationTime="Report" renderType="draw">
+			<dataset kind="category">
+				<series>
+					<seriesExpression><![CDATA[$F{COLUMN_1}]]></seriesExpression>
+					<categoryExpression><![CDATA[$F{NAME}]]></categoryExpression>
+					<valueExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP)]]></valueExpression>
+					<labelExpression><![CDATA[$F{COLUMN_1}.multiply(new java.math.BigDecimal(100)).setScale(1, java.math.RoundingMode.HALF_UP).toPlainString() + "%"]]></labelExpression>
+					<itemHyperlink linkType="None" linkTarget="Self"/>
+				</series>
+			</dataset>
+			<plot backcolor="rgba(255, 255, 255, 0.0)" orientation="Horizontal" backgroundAlpha="1.0" categoryAxisLabelColor="rgba(0, 0, 0, 0.0)" categoryAxisTickLabelColor="#000000" categoryAxisVerticalTickLabels="false" categoryAxisLineColor="rgba(0, 0, 0, 0.0)" valueAxisLabelColor="#000000" valueAxisTickLabelColor="rgba(0, 0, 0, 0.0)" valueAxisLineColor="rgba(0, 0, 0, 0.0)" showTickMarks="true" showTickLabels="true" showLabels="true">
+				<categoryAxisLabelFont fontName="Arial" fontSize="10.0"/>
+				<categoryAxisTickLabelFont fontName="Arial" fontSize="8.0" bold="false"/>
+				<valueAxisLabelFont fontName="Arial" fontSize="10.0"/>
+				<valueAxisTickLabelFont fontName="Arial"/>
+				<itemLabel color="#FFFFFF">
+					<font fontName="Arial"/>
+				</itemLabel>
+				<seriesColor order="0" color="#075482"/>
+				<seriesColor order="1" color="#075482"/>
+			</plot>
+		</element>
+	</summary>
+</jasperReport>

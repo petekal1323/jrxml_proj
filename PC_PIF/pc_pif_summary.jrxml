@@ -1,0 +1,440 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="pc_pif_summary" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="06d586c7-0c93-48b3-9daf-abef59eebec1">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PC_PIF.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="paddingLeft">
+		<box leftPadding="5"/>
+	</style>
+	<style name="paddingRight">
+		<box rightPadding="5"/>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="rgba(240, 248, 255, 0.0)">
+		<box>
+			<pen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<topPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<leftPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<bottomPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<rightPen lineWidth="0.5" lineColor="#BBBBBB"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#075482">
+		<box>
+			<pen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<topPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<leftPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<bottomPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<rightPen lineWidth="0.5" lineColor="#BBBBBB"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<topPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<leftPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<bottomPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<rightPen lineWidth="0.5" lineColor="#BBBBBB"/>
+		</box>
+		<conditionalStyle backcolor="#DDDDDD">
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<style name="tblborder">
+		<box>
+			<pen lineWidth="1.0" lineColor="#BBBBBB"/>
+			<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<topPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<leftPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<bottomPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<rightPen lineWidth="0.5" lineColor="#BBBBBB"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#2876B7">
+		<box>
+			<pen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<topPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<leftPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<bottomPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<rightPen lineWidth="0.5" lineColor="#BBBBBB"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<topPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<leftPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<bottomPen lineWidth="0.5" lineColor="#BBBBBB"/>
+			<rightPen lineWidth="0.5" lineColor="#BBBBBB"/>
+		</box>
+		<conditionalStyle backcolor="#DDDDDD">
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<style name="green_red_black" blankWhenNull="false">
+		<conditionalStyle forecolor="#0F9D58">
+			<conditionExpression><![CDATA[$F{PC_PER_PIF_PW_CHANGE} != null && $F{PC_PER_PIF_PW_CHANGE}.compareTo(BigDecimal.ZERO) > 0
+
+]]></conditionExpression>
+		</conditionalStyle>
+		<conditionalStyle forecolor="#DB4437">
+			<conditionExpression><![CDATA[$F{PC_PER_PIF_PW_CHANGE} != null && $F{PC_PER_PIF_PW_CHANGE}.compareTo(BigDecimal.ZERO) < 0
+]]></conditionExpression>
+		</conditionalStyle>
+		<conditionalStyle forecolor="#000000" backcolor="#FFFFFF" blankWhenNull="false" fontName="" fontSize="11.0" pdfFontName="">
+			<conditionExpression><![CDATA[$F{PC_PER_PIF_PW_CHANGE} == null || $F{PC_PER_PIF_PW_CHANGE}.compareTo(BigDecimal.ZERO) == 0
+]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<style name="fonts" default="true" markup="none" fontName="Arial" pdfFontName="Helvetica" pdfEmbedded="false"/>
+	<dataset name="pc_pif_header" uuid="cd38245d-0064-453b-bb66-d553b52cefed">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="pc_pif_main"/>
+		<query language="SQL"><![CDATA[DECLARE	@PostnKey	bigint = 90000000484854
+
+	EXEC P_REP__GET_PC_PER_PIF_HEADER @PostnKey]]></query>
+		<field name="NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+			<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+		</field>
+		<field name="REPORT_DATE" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="REPORT_DATE"/>
+			<property name="com.jaspersoft.studio.field.label" value="REPORT_DATE"/>
+		</field>
+		<field name="REGION_NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="REGION_NAME"/>
+			<property name="com.jaspersoft.studio.field.label" value="REGION_NAME"/>
+		</field>
+	</dataset>
+	<dataset name="pc_pif_weekly_mover_left_tbl" uuid="37a4d492-b754-489d-af33-9ea49c707d03">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PC_PIF.jrdax"/>
+		<query language="SQL"><![CDATA[	DECLARE @PostnKey bigint = 90000000484850,
+			@PostnLevelCd varchar(3) = 'AGN', --accepts AGN, MKT, TAM, FS1 see query below for description of each.
+			@MetricType varchar(3) = 'YTD' --Accepts YTD or ONP, default aka NULL it will be YTD
+
+	EXEC P_REP__GET_PC_PER_PIF_WEEKLY_MOVER @PostnKey, @PostnLevelCd, @MetricType]]></query>
+		<field name="POSTN_KEY" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="POSTN_KEY"/>
+			<property name="com.jaspersoft.studio.field.label" value="POSTN_KEY"/>
+		</field>
+		<field name="TIME_ID" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="TIME_ID"/>
+			<property name="com.jaspersoft.studio.field.label" value="TIME_ID"/>
+		</field>
+		<field name="NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+			<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+		</field>
+		<field name="PC_PER_PIF" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="PC_PER_PIF"/>
+			<property name="com.jaspersoft.studio.field.label" value="PC_PER_PIF"/>
+		</field>
+		<field name="PC_PER_PIF_PW_CHANGE" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="PC_PER_PIF_PW_CHANGE"/>
+			<property name="com.jaspersoft.studio.field.label" value="PC_PER_PIF_PW_CHANGE"/>
+		</field>
+		<field name="RANK_NBR" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="RANK_NBR"/>
+			<property name="com.jaspersoft.studio.field.label" value="RANK_NBR"/>
+		</field>
+	</dataset>
+	<dataset name="pc_pif_weekly_mover_tbl_right" uuid="f917b168-2461-4687-a773-a0f67f396c8d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PC_PIF.jrdax"/>
+		<query language="SQL"><![CDATA[DECLARE @PostnKey bigint = 90000000484850,
+			@PostnLevelCd varchar(3) = 'MKT', --accepts AGN, MKT, TAM, FS1 see query below for description of each.
+			@MetricType varchar(3) = 'ONP' --Accepts YTD or ONP, default aka NULL it will be YTD
+
+	EXEC P_REP__GET_PC_PER_PIF_WEEKLY_MOVER @PostnKey, @PostnLevelCd, @MetricType]]></query>
+		<field name="POSTN_KEY" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="POSTN_KEY"/>
+			<property name="com.jaspersoft.studio.field.label" value="POSTN_KEY"/>
+		</field>
+		<field name="TIME_ID" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="TIME_ID"/>
+			<property name="com.jaspersoft.studio.field.label" value="TIME_ID"/>
+		</field>
+		<field name="NAME" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+			<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+		</field>
+		<field name="PC_PER_PIF" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="PC_PER_PIF"/>
+			<property name="com.jaspersoft.studio.field.label" value="PC_PER_PIF"/>
+		</field>
+		<field name="PC_PER_PIF_PW_CHANGE" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="PC_PER_PIF_PW_CHANGE"/>
+			<property name="com.jaspersoft.studio.field.label" value="PC_PER_PIF_PW_CHANGE"/>
+		</field>
+		<field name="RANK_NBR" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="RANK_NBR"/>
+			<property name="com.jaspersoft.studio.field.label" value="RANK_NBR"/>
+		</field>
+		<group name="POSTN_KEY">
+			<expression><![CDATA[$F{POSTN_KEY}]]></expression>
+		</group>
+		<group name="TIME_ID">
+			<expression><![CDATA[$F{TIME_ID}]]></expression>
+		</group>
+		<group name="NAME">
+			<expression><![CDATA[$F{NAME}]]></expression>
+		</group>
+		<group name="PC_PER_PIF">
+			<expression><![CDATA[$F{PC_PER_PIF}]]></expression>
+		</group>
+		<group name="PC_PER_PIF_PW_CHANGE">
+			<expression><![CDATA[$F{PC_PER_PIF_PW_CHANGE}]]></expression>
+		</group>
+		<group name="RANK_NBR">
+			<expression><![CDATA[$F{RANK_NBR}]]></expression>
+		</group>
+	</dataset>
+	<query language="sql"><![CDATA[DECLARE	@PostnKey	bigint = 90000000484854
+
+	EXEC P_REP__GET_PC_PER_PIF_HEADER @PostnKey]]></query>
+	<field name="NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+	</field>
+	<field name="REPORT_DATE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="REPORT_DATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="REPORT_DATE"/>
+	</field>
+	<field name="REGION_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="REGION_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="REGION_NAME"/>
+	</field>
+	<background splitType="Stretch"/>
+	<detail>
+		<band height="581" splitType="Stretch">
+			<element kind="image" uuid="6c6321a0-4469-440a-929b-26c2a207b8ff" x="-6" y="2" width="106" height="98" style="fonts">
+				<expression><![CDATA["C:/Users/pkalinowski/Desktop/PCperPIF_logo2.png"]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="staticText" uuid="851bea7e-a86f-4e30-895f-213ad9c26760" x="106" y="2" width="154" height="40" fontSize="14.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" bold="true" pdfEmbedded="false" hTextAlign="Left" vTextAlign="Top" style="fonts">
+				<text><![CDATA[PC/PIF Performance Summary]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="textField" uuid="25746656-91a3-4d8d-a127-5bae31dabce0" x="106" y="38" width="148" height="20" fontSize="14.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" bold="true" pdfEmbedded="false" style="fonts">
+				<expression><![CDATA[$F{REGION_NAME}]]></expression>
+			</element>
+			<element kind="textField" uuid="102946b3-6a62-4519-a75f-8cfadae49e08" x="106" y="75" width="148" height="20" fontName="Arial" fontSize="12.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" pdfEmbedded="false" vTextAlign="Bottom">
+				<expression><![CDATA[$F{REPORT_DATE}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="component" uuid="94b199a9-6d8e-4031-8437-7f89c1c7914a" stretchType="ContainerHeight" x="-6" y="147" width="259" height="60" style="tblborder">
+				<component kind="table" whenNoDataType="Blank">
+					<datasetRun uuid="690cfa91-b316-4bed-b0e2-3640fd1aff03" subDataset="pc_pif_weekly_mover_left_tbl">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<column kind="single" uuid="20bd26e5-083a-4b99-a1ba-cb474cb38695" width="105">
+						<columnHeader height="30" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="ea4f1997-f9af-417c-aa8b-076d2d162f15" stretchType="NoStretch" x="0" y="0" width="105" height="30" forecolor="#FFFFFF" fontName="Arial" fontSize="11.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[Top 3 Agencies]]></text>
+								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+								<box>
+									<pen lineWidth="0.0" lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="29600704-17cb-4986-9179-35761bb78e00" x="0" y="0" width="105" height="30" fontName="Arial" fontSize="10.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" pdfEmbedded="false" vTextAlign="Middle" style="paddingLeft">
+								<expression><![CDATA[$F{NAME}]]></expression>
+								<box style="paddingLeft">
+									<pen lineWidth="0.0" lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+					</column>
+					<column kind="single" uuid="326a4e11-9141-4f3f-8dbe-a90faa8ff350" width="85">
+						<columnHeader height="30" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="fc4e180c-b2ef-4823-bfba-8c1c7ca99739" x="0" y="0" width="85" height="30" forecolor="#FFFFFF" fontName="Arial" fontSize="11.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[YTD Actual
+PC Per PIF]]></text>
+								<box>
+									<pen lineWidth="0.0" lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="8d542993-dcad-4799-a5c1-e911494a5db3" x="0" y="0" width="85" height="30" fontName="Arial" fontSize="11.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{PC_PER_PIF}]]></expression>
+								<box>
+									<pen lineWidth="0.0" lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+					</column>
+					<column kind="single" uuid="8634c752-72e5-4db7-8b39-a3290248fa56" width="69">
+						<columnHeader height="30" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="38353f60-e303-4e00-a210-489350e8ebcc" x="0" y="0" width="69" height="30" forecolor="#FFFFFF" fontName="Arial" fontSize="11.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[Weekly Change]]></text>
+								<box>
+									<pen lineWidth="0.0" lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="afd3fd80-3601-49d0-802f-ed57610ceaa2" mode="Transparent" x="0" y="0" width="69" height="30" fontSize="11.0" pdfFontName="Times-Roman" pdfEncoding="Cp1252" textAdjust="StretchHeight" linkType="None" linkTarget="Self" blankWhenNull="false" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle" style="green_red_black">
+								<expression><![CDATA[$F{PC_PER_PIF_PW_CHANGE} == null || $F{PC_PER_PIF_PW_CHANGE}.compareTo(BigDecimal.ZERO) == 0 ? "--" : $F{PC_PER_PIF_PW_CHANGE}.toString()]]></expression>
+								<box style="green_red_black">
+									<pen lineWidth="0.0" lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+					</column>
+				</component>
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+				<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+				<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
+				<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="rectangle" uuid="c786850d-1573-4b26-be77-f0127845eeef" x="-6" y="134" width="571" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<pen lineWidth="1.0" lineColor="#CFCFCF"/>
+			</element>
+			<element kind="staticText" uuid="b5bdc519-76c8-42cd-8da0-d6dd9a3457c0" x="-6" y="110" width="571" height="19" forecolor="#009CFF" fontSize="12.0" bold="true" hTextAlign="Left" vTextAlign="Bottom" style="fonts">
+				<text><![CDATA[Weekly Movers - Change from Prior Week]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="component" uuid="adcc743d-79cc-4537-a09f-d95aebd74a58" stretchType="ContainerHeight" x="300" y="147" width="260" height="60" style="tblborder">
+				<component kind="table">
+					<datasetRun uuid="7e95016a-1d74-45aa-b810-e51dc8ca71f6" subDataset="pc_pif_weekly_mover_tbl_right">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<column kind="single" uuid="003a384b-ff34-428f-b174-c8f52246fd6e" width="104">
+						<columnHeader height="30" rowSpan="1" style="Table 1_CH">
+							<element kind="staticText" uuid="ce81c5ac-76aa-4329-8ce7-2f032370134e" stretchType="NoStretch" x="0" y="0" width="104" height="30" forecolor="#FFFFFF" fontName="Arial" fontSize="11.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[Top Sales Leaders]]></text>
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table 1_TD">
+							<element kind="textField" uuid="ef989bce-d3d2-460e-a519-80ab1192f728" x="0" y="0" width="104" height="30" fontName="Arial" fontSize="10.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" blankWhenNull="true" pdfEmbedded="false" vTextAlign="Middle" style="paddingLeft">
+								<expression><![CDATA[$F{NAME}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+					</column>
+					<column kind="single" uuid="4872723c-d1b3-42b7-b6df-32af2893e183" width="86">
+						<columnHeader height="30" rowSpan="1" style="Table 1_CH">
+							<element kind="staticText" uuid="3348b46c-95a8-49de-b222-5aadebbb2da4" x="0" y="0" width="86" height="30" forecolor="#FFFFFF" fontName="Arial" fontSize="11.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[% EA On-Pace 
+PC Per PIF x5]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table 1_TD">
+							<element kind="textField" uuid="020928d8-c017-4140-bdd9-831128a73faf" x="0" y="0" width="86" height="30" fontName="Arial" fontSize="11.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" blankWhenNull="true" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{PC_PER_PIF}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+					</column>
+					<column kind="single" uuid="6d10ce56-c894-4309-a7f4-8f17d15ede39" width="70">
+						<columnHeader height="30" rowSpan="1" style="Table 1_CH">
+							<element kind="staticText" uuid="6c633e31-6255-4f84-9af7-8a29eadf4ad9" x="0" y="0" width="70" height="30" forecolor="#FFFFFF" fontName="Arial" fontSize="11.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[PP
+ Change]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table 1_TD">
+							<element kind="textField" uuid="3a43df3a-590f-4338-a56c-646e4fb3f97c" x="0" y="0" width="70" height="30" fontName="Arial" fontSize="11.0" pdfFontName="Helvetica" pdfEncoding="Cp1252" blankWhenNull="true" pdfEmbedded="false" hTextAlign="Center" vTextAlign="Middle" style="green_red_black">
+								<expression><![CDATA[$F{PC_PER_PIF_PW_CHANGE} == null || $F{PC_PER_PIF_PW_CHANGE}.compareTo(BigDecimal.ZERO) == 0 
+    ? "--" 
+    : String.valueOf($F{PC_PER_PIF_PW_CHANGE})
+]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+					</column>
+				</component>
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+				<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+				<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="subreport" uuid="da5d8fdc-f93b-45c2-962c-c8136fffd6c4" x="-15" y="350" width="200" height="170" style="fonts">
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<expression><![CDATA["pc_pif_top5_ea_ytd.jasper"]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="subreport" uuid="a537eb48-4dc8-4186-b789-6519e1e9db30" x="-15" y="530" width="200" height="18" style="fonts">
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<expression><![CDATA["pc_pif_fsc_ranking.jasper"]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="subreport" uuid="463d531f-e9c2-4ffc-9fb8-a84fec2ec061" x="265" y="350" width="200" height="170" style="fonts">
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<expression><![CDATA["pc_pif_top_5_sml.jasper"]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="subreport" uuid="9c0b8158-59de-49be-807e-1a26c81b4459" x="265" y="530" width="200" height="18" style="fonts">
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<expression><![CDATA["pc_pif_dist_ranking.jasper"]]></expression>
+			</element>
+			<element kind="subreport" uuid="69eb4af7-2812-4bef-a85b-afac09ecff1b" x="305" y="10" width="200" height="90">
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<expression><![CDATA["pc_pif_header_chart.jasper"]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+			</element>
+			<element kind="break" uuid="04b6e01f-c427-4304-b547-ab75cd63344a" x="0" y="111" width="100" height="1"/>
+		</band>
+	</detail>
+	<pageFooter height="38" splitType="Stretch">
+		<element kind="textField" uuid="05b3c391-d721-4624-9b33-5aefb2c40a85" x="449" y="0" width="105" height="30" pdfFontName="Helvetica" pdfEncoding="Cp1252" evaluationTime="Report" pdfEmbedded="false" hTextAlign="Right" vTextAlign="Middle" style="fonts">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+		</element>
+	</pageFooter>
+</jasperReport>
